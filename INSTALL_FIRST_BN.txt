@@ -1,0 +1,74 @@
+SCHOLARMATCH STABLE COMPLETE — INSTALL FIRST (October 28, 2026)
+===============================================================
+
+IMPORTANT: Your existing scholarmatch MySQL database stays as it is.
+This is a full CODE PACKAGE, not a dump of your student data.
+NO API keys, passwords or private records are included.
+
+STEP 1 - SAFE BACKUPS
+- XAMPP MySQL and Apache run normally for SQL export.
+- phpMyAdmin > scholarmatch > Export > SQL. Keep exported SQL OUTSIDE htdocs.
+- Keep a full copy of your OLD project folder OUTSIDE htdocs.
+- If export fails on bookmark, export the six original working tables separately.
+- Do not delete or manually change ANY .ibd/.frm/ibdata1 file.
+
+STEP 2 - ONE FRESH PROJECT FOLDER, NOT FILE-BY-FILE OVERRIDE
+- Extract this ZIP to any temporary folder outside htdocs.
+- Copy only the inner folder named scholarmatch to:
+    C:\xampp\htdocs\scholarmatch_stable
+  (name the extracted inner folder scholarmatch_stable on Windows).
+- DO NOT merge into ScholarMatch_V2_Complete_Upgrade, nor put one folder inside another.
+- URL after installing: http://localhost/scholarmatch_stable/
+- Use EXACTLY this one URL/folder for subsequent tests.
+
+STEP 3 - VERIFY CODE IN COMMAND PROMPT
+  cd /d C:\xampp\htdocs\scholarmatch_stable
+  C:\xampp\php\php.exe tests\admin_core_smoke.php
+Expected: PASS all Admin V3 functions.
+
+STEP 4 - READ-ONLY DATABASE CHECK (VERY IMPORTANT)
+  C:\xampp\php\php.exe scripts\database_preflight.php
+- If BROKEN: STOP. In particular your earlier bookmark #1932 / #1813
+  is a physical InnoDB tablespace condition and is NOT fixed by code ZIP.
+  Do not import SQL before repairing from VERIFIED backups / DBA support.
+- If missing V2 tables, first review and run in phpMyAdmin SQL tab:
+  database/01_V2_SAFE_EXISTING.sql
+- If missing V3 tables, next run:
+  database/02_ADMIN_V3_SAFE_EXISTING.sql
+- The files only ADD tables/columns/default settings; never DROP or TRUNCATE.
+- If all 15 tables can be queried and both source columns exist, RUN NO SQL.
+- SQL on an already broken DB cannot be guaranteed safe; STOP on any red SQL error.
+- DO NOT execute database/00_FRESH_SCHEMA_ONLY.sql on your existing DB;
+  that file is ONLY for creating the core tables on a NEW empty database.
+- DO NOT execute deprecated upgrade_v2.sql or admin_v3.sql names.
+
+STEP 5 - CONNECT EXISTING DATABASE
+- config/db.php targets database scholarmatch on localhost (XAMPP root / blank password default).
+- If your working XAMPP had custom database credentials, adjust this ONE file
+  on your computer to match existing settings; no SQL export import required.
+- Keep Gemini private config where your original V2 expected it:
+    C:\xampp\scholarmatch_private\gemini_config.php
+  NEVER copy your Gemini API key into this ZIP or htdocs.
+- If AI config unavailable, non-AI matching/Manual Explanation works normally.
+
+STEP 6 - TEST IN THIS ORDER
+  http://localhost/scholarmatch_stable/admin/login.php
+  http://localhost/scholarmatch_stable/admin/dashboard.php
+  http://localhost/scholarmatch_stable/admin/health.php
+  http://localhost/scholarmatch_stable/
+  http://localhost/scholarmatch_stable/explore.php
+  http://localhost/scholarmatch_stable/dashboard.php
+- Existing admin username and password are retained (SQL never resets them).
+- Staff/roles, reports, account, RAG documents, preferences, CV upload included.
+
+TROUBLESHOOTING
+- 'Call to undefined function adm_h()': you are using mixed project paths.
+  Re-run tests/admin_core_smoke.php in the same project directory and verify URL.
+- 503 'Admin setup missing': run preflight; add only missing V3 SQL after backup.
+- SQL #1932/#1813 bookmark: NOT PHP. STOP; safe recovery is a separate task.
+- Apache caches old code: XAMPP Apache Stop > Start, hard-refresh browser.
+- For live deployment add HTTPS, MFA, non-root MySQL account, automated backups,
+  centralized login throttling, and stricter audit retention.
+
+NO claim is made that Windows/MySQL live tests passed: code syntax and smoke tests
+are verified in this build environment; your XAMPP data must be tested locally.

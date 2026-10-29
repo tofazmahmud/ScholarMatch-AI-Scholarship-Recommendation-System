@@ -1,0 +1,32 @@
+
+# Database credentials
+/config/db.php
+
+# API keys
+.env
+.env.*
+!.env.example
+gemini_config.php
+ai_config.php
+secrets.php
+
+# Private data
+/uploads/
+/private_uploads/
+/scholarmatch_private/
+/backups/
+/database_backups/
+
+# Database backups
+*.backup.sql
+*.dump.sql
+*.sql.gz
+
+# Composer dependencies
+/vendor/
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+Thumbs.db

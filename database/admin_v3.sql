@@ -1,0 +1,2 @@
+-- Deprecated alias, intentionally no SQL statements.
+-- USE 02_ADMIN_V3_SAFE_EXISTING.sql after a database backup.

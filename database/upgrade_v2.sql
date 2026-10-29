@@ -1,0 +1,3 @@
+-- Deprecated unsafe SQL filename retained only as a pointer.
+-- DO NOT RUN THIS FILE. For repeat-safe additive changes use 01_V2_SAFE_EXISTING.sql
+-- after scripts/database_preflight.php and a database backup.

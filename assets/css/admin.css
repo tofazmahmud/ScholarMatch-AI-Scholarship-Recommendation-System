@@ -1,0 +1,505 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fb;
+    color: #17243a;
+}
+
+/* LOGIN PAGE */
+
+.login-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.login-logo {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.login-container h1 {
+    font-size: 28px;
+    text-align: center;
+    color: #203e79;
+}
+
+.subtitle {
+    text-align: center;
+    color: #68758a;
+    margin: 10px 0 30px;
+}
+
+.login-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.login-container input:not([type="hidden"]) {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 22px;
+    border: 1px solid #ced5df;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.login-container input:focus {
+    outline: 2px solid #91abe4;
+    border-color: #315bb5;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 13px;
+    background: #284f9e;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #1b3975;
+}
+
+.error-message {
+    background: #ffe7e7;
+    color: #9e2020;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 25px;
+    color: #8992a1;
+    font-size: 13px;
+}
+
+/* DASHBOARD */
+
+.dashboard-header {
+    background: #203e79;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6%;
+}
+
+.dashboard-header h2 {
+    font-size: 23px;
+}
+
+.logout-btn {
+    background: white;
+    color: #203e79;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.dashboard-container h1 {
+    margin-bottom: 12px;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.stat-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.stat-card h3 {
+    font-size: 17px;
+    color: #526079;
+}
+
+.stat-card p {
+    font-size: 35px;
+    font-weight: bold;
+    color: #284f9e;
+    margin-top: 15px;
+}
+
+.dashboard-section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 35px;
+}
+
+.dashboard-section h2 {
+    margin-bottom: 15px;
+}
+
+.coming-soon {
+    margin-top: 15px;
+    color: #526079;
+}
+
+@media (max-width: 600px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-container {
+        padding: 25px;
+    }
+
+    .dashboard-header {
+        padding: 18px;
+    }
+}
+
+
+/* SCHOLARSHIP MANAGEMENT */
+
+.admin-nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.scholarship-form {
+    margin-top: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.scholarship-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.scholarship-form input,
+.scholarship-form select,
+.scholarship-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.scholarship-form input:focus,
+.scholarship-form select:focus,
+.scholarship-form textarea:focus {
+    outline: 2px solid #9ab3ec;
+    border-color: #315bb5;
+}
+
+.form-full {
+    margin-top: 22px;
+}
+
+.scholarship-form textarea {
+    resize: vertical;
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-label input {
+    width: auto;
+}
+
+.form-button {
+    width: auto;
+    min-width: 180px;
+    margin-top: 25px;
+    padding: 12px 22px;
+}
+
+.cancel-link {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #475569;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 14px;
+    margin-top: 20px;
+    border-radius: 7px;
+}
+
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+.admin-table th {
+    background: #eef2f9;
+    color: #203e79;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.action-cell {
+    white-space: nowrap;
+}
+
+.edit-link {
+    text-decoration: none;
+    color: #1d4ed8;
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+@media (max-width: 650px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-button {
+        width: 100%;
+    }
+
+    .cancel-link {
+        display: block;
+        margin: 15px 0 0;
+    }
+}
+
+
+.btn-manage {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 13px 24px;
+    background: #284f9e;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.btn-manage:hover {
+    background: #1b3975;
+}
+
+
+/* REQUIREMENT MANAGEMENT */
+
+.req-selector {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.req-selector select {
+    flex: 1;
+    min-width: 220px;
+}
+
+.req-selector select,
+.req-form input,
+.req-form select {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 14px;
+    background: white;
+}
+
+.req-form {
+    margin-top: 25px;
+}
+
+.req-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.req-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.req-form input,
+.req-form select {
+    width: 100%;
+}
+
+.req-primary {
+    display: inline-block;
+    background: #284f9e;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.req-primary:hover {
+    background: #1b3975;
+}
+
+.req-note {
+    margin: 18px 0;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.req-cancel {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #475569;
+}
+
+.req-success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 14px;
+    border-radius: 7px;
+    margin-top: 20px;
+}
+
+.req-table-wrap {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.req-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+.req-table th,
+.req-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.req-table th {
+    background: #eef2f9;
+    color: #203e79;
+}
+
+.req-actions {
+    white-space: nowrap;
+}
+
+.req-actions a {
+    margin-right: 12px;
+    color: #1d4ed8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.req-actions form {
+    display: inline;
+}
+
+.req-delete {
+    background: #dc2626;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .req-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .req-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
