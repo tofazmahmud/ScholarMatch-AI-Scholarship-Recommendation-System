@@ -1,0 +1,14 @@
+/* ScholarMatch student account additions — does not alter existing CSS. */
+.sm-auth-panel { max-width: 560px; margin: 0 auto 3rem; }
+.sm-auth-panel .v2-stack { display: flex; flex-direction: column; gap: 12px; }
+.sm-auth-panel input[type="email"], .sm-auth-panel input[type="text"],
+.sm-auth-panel input[type="password"], .sm-auth-panel input:not([type]) {
+  display: block; width: 100%; padding: 12px 14px; border: 1px solid #bdcbd8;
+  border-radius: 9px; font: inherit; box-sizing: border-box;
+}
+.sm-auth-panel label { font-weight: 650; }
+.sm-auth-nav-form { display: inline-flex; align-items: center; margin: 0; }
+.sm-auth-nav-link { color: inherit; background: none; border: none; font: inherit;
+  padding: 4px 8px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.sm-auth-user { font-size: .85rem; color: #21507b; font-weight: 650; padding: 3px 8px; }
+.sm-auth-nav-join { font-weight: 700; }

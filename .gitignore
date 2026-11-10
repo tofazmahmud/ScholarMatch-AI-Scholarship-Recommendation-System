@@ -30,3 +30,8 @@ secrets.php
 *.tmp
 *.bak
 Thumbs.db
+
+
+# Private configuration
+/private_config/
+

@@ -2,6 +2,7 @@
 <?php
 require_once __DIR__ . '/includes/student_session.php';
 require_once __DIR__ . '/includes/student_helpers.php';
+require_once __DIR__ . '/includes/student_auth.php';
 require_once __DIR__ . '/includes/matching_engine.php';
 require_once __DIR__ . '/includes/v2.php';
 
@@ -193,6 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet"
           href="assets/css/student.css">
 <link rel="stylesheet" href="assets/css/v2.css">
+<link rel="stylesheet" href="assets/css/student_auth.css">
 </head>
 
 <body>
@@ -213,6 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 Recommendations
             </a>
         <a href="dashboard.php">Dashboard</a><a href="semantic_search.php">AI Search</a><a href="bookmarks.php">Saved</a><a href="application_tracker.php">Tracker</a><a href="deadline_calendar.php">Deadlines</a>
+<?php sm_auth_nav($pdo); ?>
 </nav>
 
     </div>

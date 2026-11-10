@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/student_helpers.php';
+require_once __DIR__ . '/includes/student_auth.php';
 
 $catalogueNotice = '';
 try {
@@ -93,6 +94,7 @@ $filters = compact('q', 'country', 'degree', 'funding', 'field', 'sort');
     .sm-catalogue-notice {background:#eef3ff;border-left:4px solid #3d66c6;
       padding:13px 17px;margin:16px 0;border-radius:8px;color:#243c64;}
   </style>
+<link rel="stylesheet" href="assets/css/student_auth.css">
 </head>
 <body>
 <header class="site-header">
@@ -106,7 +108,8 @@ $filters = compact('q', 'country', 'degree', 'funding', 'field', 'sort');
       <a href="preferences.php">Preferences</a>
       <a href="find_matches.php">Find My Matches</a>
       <a href="recommendations.php">Recommendations</a>
-    </nav>
+    <?php sm_auth_nav($pdo); ?>
+</nav>
   </div>
 </header>
 <main class="content-section explore-page">

@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 }
 $rows=[];
 if($pid && $bookmarkHealthy){$s=$pdo->prepare('SELECT s.id,s.name,s.provider,s.country,s.degree_level,s.funding_type,s.deadline FROM bookmark b JOIN scholarship s ON s.id=b.scholarship_id WHERE b.profile_id=? ORDER BY s.deadline ASC');$s->execute([$pid]);$rows=$s->fetchAll();}
-sm_v2_head('Saved scholarships'); sm_v2_begin('YOUR SHORTLIST','Saved scholarships','Save a scholarship from Explore or Recommendations, and find it here later in this browser session.');
+sm_v2_head('Saved scholarships'); sm_v2_begin('YOUR SHORTLIST','Saved scholarships','Save scholarships from Explore or Recommendations. Log in to your account to restore them on another visit.');
 ?>
 <?php if(!$bookmarkHealthy): ?><div class="v2-alert">Bookmark table unavailable due to database problem. Check Admin System Health; no data has been modified.</div><?php elseif(!$pid): ?><div class="v2-alert">Create a <a href="profile.php">student profile</a> to save scholarships.</div><?php elseif(!$rows): ?><div class="v2-card">No saved scholarships yet. <a href="explore.php">Explore opportunities →</a></div><?php else: ?>
 <form action="compare.php" method="GET"><div class="v2-grid">

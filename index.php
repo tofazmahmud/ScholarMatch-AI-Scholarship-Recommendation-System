@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/student_helpers.php';
+require_once __DIR__ . '/includes/student_auth.php';
 
 // Public pages stay available even before Admin V3 settings migration.
 $announcement = '';
@@ -41,6 +42,7 @@ $featured = $pdo->query(
       border-radius: 10px; color: #1c417a; font-weight: 600;
     }
   </style>
+<link rel="stylesheet" href="assets/css/student_auth.css">
 </head>
 <body>
 <header class="site-header">
@@ -54,7 +56,8 @@ $featured = $pdo->query(
       <a href="preferences.php">Preferences</a>
       <a href="find_matches.php">Find My Matches</a>
       <a href="recommendations.php">Recommendations</a>
-    </nav>
+    <?php sm_auth_nav($pdo); ?>
+</nav>
   </div>
 </header>
 <main>
@@ -76,6 +79,7 @@ $featured = $pdo->query(
         <button type="submit">Search</button>
       </form>
       <a href="explore.php" class="hero-secondary-link">Explore All Scholarships →</a>
+      <a href="student_register.php" class="hero-secondary-link" style="margin-left: 14px">Create Student Account →</a>
     </div>
   </section>
 

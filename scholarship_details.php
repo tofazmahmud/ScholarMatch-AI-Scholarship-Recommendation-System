@@ -1,6 +1,7 @@
 
 <?php
 require_once __DIR__ . '/includes/student_helpers.php';
+require_once __DIR__ . '/includes/student_auth.php';
 
 $id = filter_var(
     $_GET['id'] ?? null,
@@ -68,6 +69,7 @@ $hasOfficialLink = sm_valid_url($officialUrl);
     <link rel="stylesheet"
           href="assets/css/student.css">
 <link rel="stylesheet" href="assets/css/v2.css">
+<link rel="stylesheet" href="assets/css/student_auth.css">
 </head>
 
 <body>
@@ -88,6 +90,7 @@ $hasOfficialLink = sm_valid_url($officialUrl);
 <a href="find_matches.php">Find My Matches</a>
 <a href="recommendations.php">Recommendations</a>
         <a href="dashboard.php">Dashboard</a><a href="semantic_search.php">AI Search</a><a href="bookmarks.php">Saved</a><a href="application_tracker.php">Tracker</a><a href="deadline_calendar.php">Deadlines</a>
+<?php sm_auth_nav($pdo); ?>
 </nav>
 
     </div>

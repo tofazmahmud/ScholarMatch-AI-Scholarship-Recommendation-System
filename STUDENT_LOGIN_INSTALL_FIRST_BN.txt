@@ -1,0 +1,67 @@
+SCHOLARMATCH - STUDENT LOGIN/REGISTER/LOGOUT ADD-ON (Nov 2026)
+============================================================
+
+WHAT IS NEW
+- Student account registration: student_register.php
+- Student login: student_login.php
+- Logout (POST with CSRF): student_logout.php
+- Student profile/bookmarks/tracker/recommendations restored after re-login.
+- Works with original Student Profile, Admin panel, CV extraction, matching & RAG.
+
+IMPORTANT: OLD DATABASE IS NOT RESET OR REPLACED
+-------------------------------------------------
+The original 15 tables are unchanged. This update ONLY ADDS a new table:
+student_account (with a foreign key to the existing profile table).
+There is no ALTER TABLE, DROP TABLE, DELETE, or TRUNCATE operation.
+A database change is necessary for storing registered student accounts.
+
+SAFE INSTALL - EXISTING XAMPP/MySQL DATABASE
+-------------------------------------------
+1. Back up current ScholarMatch code folder AND database from phpMyAdmin Export.
+2. Extract this ZIP to a SEPARATE temporary folder. DO NOT overwrite blindly.
+3. Copy the updated code after keeping a backup of your working project.
+   Existing database/config/db.php connection values should be kept intact.
+4. Start XAMPP Apache + MySQL, open http://localhost/phpmyadmin/.
+5. Select YOUR EXISTING scholarmatch database in the LEFT sidebar.
+6. Import database/03_STUDENT_AUTH_SAFE_ADDITIVE.sql using the Import tab.
+   If your host uses a prefixed DB name, select THAT database; SQL has no USE statement.
+7. Confirm that a new table `student_account` appears (16 tables total if 15 existed).
+8. Open (for local folder path `scholarmatch_stable/scholarmatch`):
+   http://localhost/scholarmatch_stable/scholarmatch/student_register.php
+9. Register with a NEW test email, strong password. You should land on Dashboard.
+10. Fill Profile + Preferences, Save a Bookmark, and Save a Tracker status.
+11. Click LOG OUT from navbar.
+12. Click LOG IN, sign in with the SAME email/password.
+13. Check Profile + Preferences + Bookmarks + Tracker persist unchanged.
+14. Repeat in another browser. Only authenticated users get cross-browser recovery.
+
+EXISTING ANONYMOUS PROFILE
+--------------------------
+If your browser already has an anonymous profile, register in that SAME browser
+BEFORE clearing cookies. Registration links the existing profile and its data
+to the new student account. The existing profile row is NOT recreated.
+Logging into an old account from a new anonymous session does not merge that
+anonymous session's data; sign in FIRST if you want to update an existing account.
+
+SECURITY AND LIMITATIONS
+------------------------
+- Passwords are securely hashed with PHP password_hash(), never plaintext.
+- CSRF protection for register/login/logout; session ID regenerated on login/logout.
+- Per-browser-session rate limiting: 5 failed attempts per 15 minutes.
+- Dedicated login & logout, separate from Admin login.
+- No password-reset email or email verification yet.
+- Anonymous browsing is still available, but anonymous profile won't reliably
+  persist across browser/cookie resets without registering.
+- No real database integration/browser tests were run in the build environment;
+  please follow the end-to-end checklist above before live deployment.
+- Do NOT upload .git history, private config files, or real student documents.
+- InfinityFree uses its own database HOST/NAME/USERNAME/PASSWORD. You will need
+  to adapt your config/db.php on the host before the PHP application can run.
+- Composer dependencies shipped from the uploaded project; check hosting PHP.
+
+PROJECT ROOT IN ZIP
+-------------------
+scholarmatch/ (index.php, student_register.php, student_login.php, etc.)
+To host at /scholarmatch/, put the CONTENTS of scholarmatch/ into
+htdocs/scholarmatch/ so that htdocs/scholarmatch/index.php exists.
+Do not accidentally create htdocs/scholarmatch/scholarmatch/index.php.

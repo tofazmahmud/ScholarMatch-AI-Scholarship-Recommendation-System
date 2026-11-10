@@ -98,3 +98,21 @@ CSE0613316 - Software Project Design and Development (Lab)
 Al-Imtiaz
 Associate Professor
 Department of Computer Science and Engineering
+
+
+## Student Registration and Account Recovery (November 2026)
+
+This version adds **student_register.php**, **student_login.php**, and a CSRF-protected **student_logout.php**.
+It links a new `student_account` table to the **existing** `profile` table; other tables
+and the student matching / RAG pipeline are preserved. See `STUDENT_LOGIN_INSTALL_FIRST_BN.txt`.
+
+**Mandatory one-time migration on the existing database:**
+`database/03_STUDENT_AUTH_SAFE_ADDITIVE.sql` (select your database first).
+Never import the fresh schema onto an existing database. Back up before migration.
+
+When a registered user logs in later, the system restores the same existing profile ID
+and therefore the existing preferences, bookmarks, application tracker and recommendations.
+Anonymous visitors can still use the app; registration is required for reliable recovery.
+
+Student login is separate from the original Admin login. Password reset and verified
+email ownership are not implemented yet.

@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__.'/v2.php';
+require_once __DIR__.'/student_auth.php';
 function sm_v2_head(string $title): void { ?>
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= sm_h($title) ?> | ScholarMatch V2</title>
-<link rel="stylesheet" href="assets/css/student.css"><link rel="stylesheet" href="assets/css/v2.css"></head><body>
+<link rel="stylesheet" href="assets/css/student.css"><link rel="stylesheet" href="assets/css/v2.css"><link rel="stylesheet" href="assets/css/student_auth.css"></head><body>
 <header class="site-header"><div class="nav-container">
 <a href="index.php" class="brand">✦ ScholarMatch</a>
-<nav aria-label="Main navigation"><a href="index.php">Home</a><a href="dashboard.php">Dashboard</a><a href="explore.php">Explore</a><a href="semantic_search.php">AI Search</a><a href="bookmarks.php">Saved</a><a href="application_tracker.php">Tracker</a><a href="deadline_calendar.php">Deadlines</a><a href="profile.php">Profile</a><a href="recommendations.php">Matches</a></nav></div></header>
+<nav aria-label="Main navigation"><a href="index.php">Home</a><a href="dashboard.php">Dashboard</a><a href="explore.php">Explore</a><a href="semantic_search.php">AI Search</a><a href="bookmarks.php">Saved</a><a href="application_tracker.php">Tracker</a><a href="deadline_calendar.php">Deadlines</a><a href="profile.php">Profile</a><a href="recommendations.php">Matches</a><?php sm_auth_nav($GLOBALS['pdo']); ?></nav></div></header>
 <?php }
 function sm_v2_footer(): void { ?>
 <footer class="site-footer"><p>ScholarMatch V2 · Evidence-led scholarship discovery · Check all details with the official provider.</p></footer></body></html>
