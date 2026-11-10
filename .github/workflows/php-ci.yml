@@ -1,0 +1,46 @@
+name: ScholarMatch PHP CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  php-checks:
+    name: PHP Lint & Smoke Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_mysql
+          coverage: none
+
+      - name: Show PHP version
+        run: php -v
+
+      - name: Check PHP syntax for all tracked source files
+        shell: bash
+        run: |
+          git ls-files -z '*.php' | while IFS= read -r -d '' file; do
+            php -l "$file" || exit 1
+          done
+
+      - name: Run matching and CV logic tests
+        run: php tests/logic.php
+
+      - name: Run admin component smoke test
+        run: php tests/admin_core_smoke.php
+
+      - name: Run student authentication static smoke test
+        run: php tests/student_account_static_smoke.php
