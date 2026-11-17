@@ -44,3 +44,15 @@ jobs:
 
       - name: Run student authentication static smoke test
         run: php tests/student_account_static_smoke.php
+        
+      - name: Execute 50 individually identified test checks
+        run: php tests/ci_50.php
+
+      - name: Upload 50-case test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scholarmatch-50-test-evidence
+          path: ci-results/
+          if-no-files-found: warn
+          retention-days: 30
