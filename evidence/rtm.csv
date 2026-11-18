@@ -1,0 +1,49 @@
+Req_ID,Requirement,Test_Cases,Status,Coverage_Type
+FR-01,Show active scholarship list,TC-15,Pass,Source contract
+FR-02,Search and filter scholarships,TC-15,Pass,Source contract
+FR-03,Show scholarship and provider details,TC-16,Pass,Source contract
+FR-04,Open official provider URL,TC-17,Pass,Source contract
+FR-05,Identify student profile,TC-18,Pass,Source contract
+FR-06,Validate CV upload type and size,TC-05 TC-06 TC-07 TC-08,Pass,PHP logic
+FR-07,Extract academic fields from CV,TC-05 TC-06 TC-07 TC-08,Pass,PHP logic
+FR-08,Present extracted data before confirmation,TC-08,Pass,PHP logic
+FR-09,Manual profile edit and extraction fallback,TC-18,Partial,Source contract (behavioral pending)
+FR-10,Save preferences,TC-20 TC-21,Pass,Source contract
+FR-11,Retrieve profile and rules on match,TC-22 TC-23,Pass,Source contract
+FR-12,Evaluate explicit eligibility,TC-01 TC-02,Pass,PHP logic
+FR-13,One eligibility status per scholarship,TC-51,Pass,Behavioral logic
+FR-14,Missing values trigger manual check,TC-03 TC-25,Pass,PHP logic + Source
+FR-15,Deterministic suitability ranking,TC-52,Pass,Behavioral logic
+FR-16,Display result name and eligibility,TC-24,Pass,Source contract
+FR-17,Show explanation separately,TC-26,Pass,Source contract
+FR-18,One active recommendation per pair,TC-53,Pass,Behavioral logic
+FR-19,Admin authentication,TC-30 TC-31 TC-32 TC-33,Pass,Source contract
+FR-20,Admin scholarship CRUD,TC-34 TC-35,Pass,Source contract
+FR-21,Admin requirement CRUD,TC-36 TC-37,Pass,Source contract
+FR-22,Store explicit and ambiguous certainty,TC-23,Pass,Source contract
+FR-23,Admin input validation,TC-54,Pass,Behavioral logic
+FR-24,Deny unauthenticated admin mutation,TC-33,Pass,Source contract
+CR-01,Student registration and login,TC-30 TC-31,Pass,Source contract
+CR-02,Persistent profile after login,TC-18,Partial,Source contract (behavioral pending)
+CR-03,Student logout,TC-31,Pass,Source contract
+CR-04,Bookmark save and remove,TC-48 TC-49,Pass,Source contract
+CR-05,Application tracker,TC-50,Pass,Source contract
+CR-06,Role-based staff permissions,TC-38 TC-39,Pass,Source contract
+CR-07,Admin audit history,TC-42,Pass,Source contract
+CR-08,Source evidence management,TC-43 TC-45,Pass,Source contract
+NFR-01,Fast response under normal load,Not measured,Not tested,NFR test pending
+NFR-02,Parameterized SQL everywhere,TC-19 TC-21 TC-35 TC-37,Pass,Source contract
+NFR-03,Transaction rollback on error,Not measured,Not tested,NFR test pending
+NFR-04,Bcrypt password hashing,TC-38 TC-41,Pass,Source contract
+NFR-05,CSRF protection,TC-10 TC-11 TC-32 TC-34,Pass,Source contract
+NFR-06,Session ID rotation on login,TC-31,Pass,Source contract
+NFR-07,PDO prepared statements,TC-19 TC-35,Pass,Source contract
+NFR-08,HTTPS in production,Not tested,Not tested,Out of scope (local only)
+NFR-09,Explicit session token handling,TC-31,Pass,Source contract
+NFR-10,Unique QR / single-use token,Not tested,Not tested,NFR test pending
+NFR-11,No unauthorized status change,TC-33,Pass,Source contract
+NFR-12,Responsive layout,Not tested,Not tested,NFR test pending
+NFR-13,Bangla display support,Not tested,Not tested,NFR test pending
+NFR-14,Accessible UI,Not tested,Not tested,Lighthouse pending
+NFR-15,Modern browser compatibility,Not tested,Not tested,NFR test pending
+NFR-16,Database backup and recovery,Not tested,Not tested,Out of scope
