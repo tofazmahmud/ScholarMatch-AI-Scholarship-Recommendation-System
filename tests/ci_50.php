@@ -144,12 +144,6 @@ $validateInput = function(array $input): array {
     }
     return $errors;
 };
-    $errors = [];
-    if (empty($input['name'])) { $errors[] = 'name_required'; }
-    if (!filter_var($input['url'] ?? '', FILTER_VALIDATE_URL)) { $errors[] = 'invalid_url'; }
-    if (isset($input['deadline']) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $input['deadline'])) { $errors[] = 'invalid_date'; }
-    return $errors;
-};
 $invalidErrors = $validateInput(['name' => '', 'url' => 'not-a-url', 'deadline' => '2026-13-45']);
 $validErrors   = $validateInput(['name' => 'Test', 'url' => 'https://example.com/apply', 'deadline' => '2026-12-31']);
 sm_case($results, 'TC-54', 'Admin input validation rejects 3 invalid fields and accepts valid input', count($invalidErrors) === 3 && count($validErrors) === 0, 'Behavioral logic');
