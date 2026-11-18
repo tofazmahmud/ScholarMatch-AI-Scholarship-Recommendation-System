@@ -136,6 +136,17 @@ $validateInput = function(array $input): array {
     $errors = [];
     if (empty($input['name'])) { $errors[] = 'name_required'; }
     if (!filter_var($input['url'] ?? '', FILTER_VALIDATE_URL)) { $errors[] = 'invalid_url'; }
+    if (isset($input['deadline'])) {
+        if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $input['deadline'], $m)
+            || !checkdate((int)$m[2], (int)$m[3], (int)$m[1])) {
+            $errors[] = 'invalid_date';
+        }
+    }
+    return $errors;
+};
+    $errors = [];
+    if (empty($input['name'])) { $errors[] = 'name_required'; }
+    if (!filter_var($input['url'] ?? '', FILTER_VALIDATE_URL)) { $errors[] = 'invalid_url'; }
     if (isset($input['deadline']) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $input['deadline'])) { $errors[] = 'invalid_date'; }
     return $errors;
 };
