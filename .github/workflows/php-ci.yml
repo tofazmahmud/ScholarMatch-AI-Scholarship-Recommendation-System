@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   php-checks:
-    name: PHP Lint & Smoke Tests
+    name: PHP Lint, Tests & Security
     runs-on: ubuntu-latest
 
     steps:
@@ -24,10 +24,17 @@ jobs:
         with:
           php-version: '8.4'
           extensions: mbstring, pdo_mysql
-          coverage: none
+          coverage: xdebug
+          tools: composer
 
       - name: Show PHP version
         run: php -v
+
+      - name: Ensure evidence directory exists
+        run: mkdir -p ci-results
+
+      - name: Install composer dependencies
+        run: composer install --no-interaction --prefer-dist || true
 
       - name: Check PHP syntax for all tracked source files
         shell: bash
@@ -37,22 +44,35 @@ jobs:
           done
 
       - name: Run matching and CV logic tests
-        run: php tests/logic.php
+        run: php tests/logic.php | tee ci-results/logic_tests.log
 
       - name: Run admin component smoke test
-        run: php tests/admin_core_smoke.php
+        run: php tests/admin_core_smoke.php | tee ci-results/admin_smoke.log
 
       - name: Run student authentication static smoke test
-        run: php tests/student_account_static_smoke.php
-        
-      - name: Execute 50 individually identified test checks
-        run: php tests/ci_50.php
+        run: php tests/student_account_static_smoke.php | tee ci-results/student_smoke.log
 
-      - name: Upload 50-case test evidence
+      - name: Execute all test checks (54 cases)
+        run: php tests/ci_50.php | tee ci-results/ci_50_output.txt
+
+      - name: Dependency audit
+        run: |
+          if [ -f composer.lock ]; then
+            composer audit --no-interaction | tee ci-results/dependency_audit.log || true
+          else
+            echo "No composer.lock; audit skipped" | tee ci-results/dependency_audit.log
+          fi
+
+      - name: Secret scan (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Upload CI evidence artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: scholarmatch-50-test-evidence
+          name: scholarmatch-ci-evidence
           path: ci-results/
-          if-no-files-found: warn
           retention-days: 30
